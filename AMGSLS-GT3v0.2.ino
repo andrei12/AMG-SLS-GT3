@@ -13,6 +13,7 @@ char auth[] = "xxxxxxxxx";
 char pass[] = "xxxxxx";
 char ssid[] = "xxxxxx";
 
+//GPIOs
 int AIN1=14;
 int AIN2=27;
 int PWMA=4;
@@ -24,12 +25,16 @@ int PWMB=15;
 
 void setup()
 {
-  Serial.begin(9600);
-  ledcSetup(3, 12000, 8);
+  //debug
+  Serial.begin(9600); 
+  
+  //pwm channel config
+  ledcSetup(3, 12000, 8);  
   ledcAttachPin(4, 3);
   
-  //Blynk.begin(auth, ssid, pass);
   Blynk.begin(auth, ssid, pass);
+   
+  //GPIO mode setup
     pinMode(14, OUTPUT);
     pinMode(27, OUTPUT);
     pinMode(4, OUTPUT);
@@ -43,12 +48,15 @@ void loop()
   Blynk.run();    
 }
 
-
+//PWM power slider widget
 BLYNK_WRITE(V7)
 {
  int dutyCycle = param.asInt();
  ledcWrite(3, dutyCycle); 
 }
+
+
+//joystick setup
 BLYNK_WRITE(V3)
 {
 
@@ -129,6 +137,7 @@ else if(x==1 && y==3){  //fwd-L
   digitalWrite(AIN1, LOW);
   digitalWrite(AIN2, HIGH);   
 }
+  //joystick debug
   Serial.print(" x: ");
   Serial.print(x);
   Serial.print("  y: ");
