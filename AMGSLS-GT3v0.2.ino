@@ -5,11 +5,6 @@
 #include <BlynkSimpleEsp32.h>
 
 char auth[] = "xxxxxxxxx";
-//acasa
-//char ssid[] = "xxxxxxx";
-//char pass[] = "xxxxxx";
-
-//vando
 char pass[] = "xxxxxx";
 char ssid[] = "xxxxxx";
 
